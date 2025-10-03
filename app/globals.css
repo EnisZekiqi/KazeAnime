@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000103;
+  --foreground: #000103;
 }
 
 @theme inline {
@@ -14,13 +14,61 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000103;
+    --foreground: #000103;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', "Poppins Placeholder", sans-serif;
+}
+
+.wrapper{
+   background: rgba(0, 1, 3,0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Floating animation for decorative images */
+@keyframes float-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.floating-vertical {
+  animation: float-vertical 4s ease-in-out infinite;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .floating-vertical {
+    animation: none !important;
+    transform: translateY(0) !important;
+  }
+}
+
+.text-fade{
+  color:white;
+  animation: fade 0.5 2s  linear infinite;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+   opacity: 0.5;
+  }
 }
