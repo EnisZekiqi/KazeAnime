@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <body className="relative overflow-x-hidden">
         {/* decorative image is absolutely positioned relative to body so it can sit in the top-right and still scroll with the page */}
-        <div className="absolute -top-[22%] -right-[10%] pointer-events-none z-0 w-72 sm:w-96 lg:w-[540px]">
+        <div className="absolute -top-[18%] -right-[10%] pointer-events-none z-0 w-72 sm:w-96 lg:w-[540px]">
           <img
             src="https://framerusercontent.com/images/dwxExDkm76wbBZfsBvtV3qnpVs.png?scale-down-to=1024"
             alt="decorative"

@@ -10,3 +10,19 @@ export async function getManga() {
     const res = await axios.get('https://api.jikan.moe/v4/manga')
     return res.data.data
 }
+
+export async function AnimeID(id:number) {
+    const res = await axios.get(`https://api.jikan.moe/v4/anime/${id}`)
+    return res.data.data
+}
+
+export async function AnimeCharacter(id:number) {
+    const res = await axios.get(`https://api.jikan.moe/v4/anime/${id}/characters`)
+    return res.data.data
+}
+
+
+export async function SearchAnime(query:string) {
+    const res = await axios.get(`https://api.jikan.moe/v4/anime?q=${query}&limit=10`)
+    return res.data.data
+}

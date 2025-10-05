@@ -22,7 +22,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Poppins', "Poppins Placeholder", sans-serif;
 }
 
 .wrapper{
@@ -71,4 +70,17 @@ body {
   100% {
    opacity: 0.5;
   }
+}
+
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 270px;
+  background: linear-gradient(180deg, #54545400 0%, var(#245f37 ,#245f37) 100%);
+  filter: blur(20px);
+  z-index: -1;
+  border-radius: 12px;
 }

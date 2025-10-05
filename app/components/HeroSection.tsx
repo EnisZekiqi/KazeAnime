@@ -23,7 +23,7 @@ const HeroSection = () => {
         e.preventDefault()
 
         if (query.trim() !== "") {
-            router.push(`/search/${query}`);
+           router.push(`/search?query=${encodeURIComponent(query)}`);
         }
     }
 
@@ -46,7 +46,7 @@ const HeroSection = () => {
                  <section className="relative overflow-hidden w-full h-full flex-1 flex flex-col items-start justify-center space-y-6">
       <div className="wrapper z-100 absolute top-0 left-0 w-3/6 h-screen">
       </div>
-       <div className="text-[70px] z-100 text-white font-[600] w-2/4 leading-[105px] text-balance mt-14">Your Gateway to Anime Worlds    </div>
+       <div className="text-[80px] z-100 text-white font-[500] w-3/4 leading-[105px] text-balance mt-14">Your Gateway to Anime Worlds    </div>
         <p className="text-[#a5a5a5] z-100 text-lg w-2/5">Discover, Explore, and Immerse Yourself in the Best Anime Content with KazeAnime</p>
             <div className="border border-[#343434]/70 bg-[#0E0E0E] rounded-2xl z-100 p-1 w-full max-w-[450px] ">
                 <form onSubmit={handleSearch} className="flex items-center gap-2 p-1 z-100">
