@@ -22,22 +22,22 @@ export default async function SearchPage({ searchParams }: { searchParams: { que
   const data = await SearchAnime(query) as Anime[];
 
   return (
-    <div className="flex flex-col items-start justify-center min-h-screen p-4">
+    <div className="flex flex-col items-start justify-center min-h-[150vh] p-4">
       <h1 className="text-white text-2xl font-semibold mb-4">
-        Search Results for "{query}"
+        Search Results for <b className="text-[#28a76f] font-semibold">{query}</b>
       </h1>
-      <div className="flex flex-wrap justify-start">
+      <div className="flex flex-wrap justify-start items-center gap-4">
         {data.length > 0 ? (
           data.map((anime) => (
           <Link key={anime.mal_id} href={`/anime/${anime.mal_id}`}>
               <div
               key={anime.mal_id}
-              className="w-48 m-2 bg-[#1a1a1a] p-4 rounded-lg hover:scale-105 transition-transform duration-200"
+              className="w-[280px] m-2 bg-[#1a1a1a] p-4 rounded-lg hover:scale-105 transition-transform duration-200"
             >
               <img
                 src={anime.images.jpg.image_url}
                 alt={anime.title}
-                className="w-full h-64 object-cover rounded-md mb-2"
+                className="w-full h-64 object-contain rounded-md mb-2"
               />
               <h2 className="text-white text-md font-medium text-center">
                 {anime.title}

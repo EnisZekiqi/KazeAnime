@@ -60,10 +60,10 @@ export default async function DetailsAnime({params}: {params: {id: number}}) {
     return(
         <>
         {data && (
-            <div className="flex flex-col items-start justify-center min-h-screen p-4">
+            <div className="flex flex-col items-start justify-center min-h-full p-4">
                 <div className=" p-6 flex flex-col items-start gap-4 rounded-lg shadow-lg max-w-7xl w-full">
                     <div className="flex flex-col md:flex-row items-center md:items-start">
-                        <img src={data.images.jpg.large_image_url} alt={data.title} className="w-full h-fit rounded-lg mb-4 md:mb-0 md:mr-6"/>
+                        <img src={data.images.jpg.large_image_url} alt={data.title} className="w-full h-fit object-contain rounded-lg mb-4 md:mb-0 md:mr-6"/>
                         <div className="text-white">
                             <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
                             <p className="mb-3"><span className="font-semibold text-[#32cd87]">Episodes:</span> {data.episodes}</p>

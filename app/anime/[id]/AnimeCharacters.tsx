@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react";
-
+import Link from "next/link";
  type Character = {
     mal_id: number;
     character: {
@@ -38,11 +38,13 @@ const AnimeCharacters = ({character}:CharacterProps) => {
                             <h2 className="text-2xl font-bold mb-4 text-white">Characters</h2>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                                 {character.slice(0,visibleCount).map((char) => (
-                                    <div key={char.mal_id} className="bg-[#1a1a1a] p-4 rounded-lg flex flex-col items-center">
-                                       <img src={char.character.images.jpg.image_url} className="h-34 w-auto object-contain" alt="" />
+                                   <Link key={char.mal_id} href={`/characters/${char.character.mal_id}`}>
+                                    <div  className="bg-[#1a1a1a] p-4 rounded-lg flex flex-col items-center h-full">
+                                       <img src={char.character.images.jpg.image_url} className="w-full sm:h-22 md:h-40 lg:h-60 object-contain " alt="" />
                                         <h3 className="text-white text-md font-medium text-center mt-4">{char.character.name}</h3>
                                         <p className="text-[#a5a5a5] text-sm font-light text-center">{char.role}</p>
                                     </div>
+                                   </Link>
                                 ))}
                             </div>
                         </div>

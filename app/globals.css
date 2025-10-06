@@ -84,3 +84,21 @@ body {
   z-index: -1;
   border-radius: 12px;
 }
+
+.setup{
+
+   border: none;
+    background:none;
+   backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
+
+@media (max-width: 768px) {
+  .setup{
+    border: 1px solid #1e1e1e;
+  background: #141414b3;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  }
+  
+}

@@ -26,3 +26,8 @@ export async function SearchAnime(query:string) {
     const res = await axios.get(`https://api.jikan.moe/v4/anime?q=${query}&limit=10`)
     return res.data.data
 }
+
+export async function CharacterID(id:number) {
+    const res = await axios.get(`https://api.jikan.moe/v4/characters/${id}/full`)
+    return res.data.data
+}
