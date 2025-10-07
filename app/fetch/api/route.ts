@@ -1,5 +1,8 @@
 import axios from "axios";
 
+
+/// Anime APIs
+
 export async function getAnime() {
     const res = await axios.get('https://api.jikan.moe/v4/anime')
 
@@ -29,5 +32,19 @@ export async function SearchAnime(query:string) {
 
 export async function CharacterID(id:number) {
     const res = await axios.get(`https://api.jikan.moe/v4/characters/${id}/full`)
+    return res.data.data
+}
+
+
+//// Manga APIs
+
+export async function MangaID(id:number) {
+    const res = await axios.get(`https://api.jikan.moe/v4/manga/${id}`)
+    return res.data.data
+}
+
+
+export async function MangaCharacter(id:number) {
+    const res = await axios.get(`https://api.jikan.moe/v4/manga/${id}/characters`)
     return res.data.data
 }

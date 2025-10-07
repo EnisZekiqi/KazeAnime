@@ -42,12 +42,12 @@ const HeroSection = () => {
 ]
 
         return ( 
-             <div className="flex items-end  justify-between gap-8">
+             <div className="flex flex-col-reverse md:flex-row items-start md:items-end  justify-between gap-8">
                  <section className="relative overflow-hidden w-full h-full flex-1 flex flex-col items-start justify-center space-y-6">
       <div className="wrapper z-100 absolute top-0 left-0 w-3/6 h-screen">
       </div>
-       <div className="text-[80px] z-100 text-white font-[500] w-3/4 leading-[105px] text-balance mt-14">Your Gateway to Anime Worlds    </div>
-        <p className="text-[#a5a5a5] z-100 text-lg w-2/5">Discover, Explore, and Immerse Yourself in the Best Anime Content with KazeAnime</p>
+       <div className="text-[32px] md:text-[48px] lg:text-[80px] z-100 text-white font-[500] w-full lg:w-3/4 lg:leading-[105px] text-balance mt-14">Your Gateway to Anime Worlds    </div>
+        <p className="text-[#a5a5a5] z-100 text-lg w-full md:w-2/5">Discover, Explore, and Immerse Yourself in the Best Anime Content with KazeAnime</p>
             <div className="border border-[#343434]/70 bg-[#0E0E0E] rounded-2xl z-100 p-1 w-full max-w-[450px] ">
                 <form onSubmit={handleSearch} className="flex items-center gap-2 p-1 z-100">
         <input
