@@ -21,10 +21,10 @@ const Navbar = () => {
                     </div>
 
                     <ul className="hidden md:flex space-x-6 text-white bg-[#0E0E0E] border border-[#1E1E1E] px-6 py-5 rounded-2xl">
-                        <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">Features</li>
-                        <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">Anime</li>
-                        <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">Manga</li>
-                        <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">My List</li>
+                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Features</li>
+                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Anime</li>
+                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Manga</li>
+                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">My List</li>
                     </ul>
 
                     <motion.button onClick={toggleMenu} aria-expanded={isMenuOpen} className={`rounded-2xl ${isMenuOpen ? 'rotate-45':'rotate-0'} p-3 opacity-100 md:opacity-0`}>
@@ -37,10 +37,10 @@ const Navbar = () => {
                     {isMenuOpen && (
                         <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28 }} className="md:hidden overflow-hidden mt-4">
                             <ul className="flex flex-col space-y-4 text-white text-2xl font-normal px-6 py-5 rounded-2xl">
-                                <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">Features</li>
-                                <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">Anime</li>
-                                <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">Manga</li>
-                                <li className="hover:text-[#a5a5a5] cursor-pointer transition-all duration-100">My List</li>
+                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Features</li>
+                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Anime</li>
+                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Manga</li>
+                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">My List</li>
                             </ul>
                         </motion.div>
                     )}

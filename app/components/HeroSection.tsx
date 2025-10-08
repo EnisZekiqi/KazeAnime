@@ -48,7 +48,7 @@ const HeroSection = () => {
       </div>
        <div className="text-[32px] md:text-[48px] lg:text-[80px] z-100 text-white font-[500] w-full lg:w-3/4 lg:leading-[105px] text-balance mt-14">Your Gateway to Anime Worlds    </div>
         <p className="text-[#a5a5a5] z-100 text-lg w-full md:w-2/5">Discover, Explore, and Immerse Yourself in the Best Anime Content with KazeAnime</p>
-            <div className="border border-[#343434]/70 bg-[#0E0E0E] rounded-2xl z-100 p-1 w-full max-w-[450px] ">
+            <div className="border focus:focus-within:border-[#28a76f] border-[#343434]/70 bg-[#0E0E0E] rounded-2xl z-100 p-1 w-full max-w-[450px] ">
                 <form onSubmit={handleSearch} className="flex items-center gap-2 p-1 z-100">
         <input
             type="text"

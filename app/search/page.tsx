@@ -32,7 +32,7 @@ export default async function SearchPage({ searchParams }: { searchParams: { que
           <Link key={anime.mal_id} href={`/anime/${anime.mal_id}`}>
               <div
               key={anime.mal_id}
-              className="w-[280px] m-2 bg-[#1a1a1a] p-4 rounded-lg hover:scale-105 transition-transform duration-200"
+              className="w-[280px] h-[350px] border border-[#343434] hover:border-[#28a76f] m-2 bg-[#1a1a1a] p-4 rounded-lg transition-all duration-300"
             >
               <img
                 src={anime.images.jpg.image_url}
