@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-
+import Link from "next/link";
 const Navbar = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,8 +21,8 @@ const Navbar = () => {
                     </div>
 
                     <ul className="hidden md:flex space-x-6 text-white bg-[#0E0E0E] border border-[#1E1E1E] px-6 py-5 rounded-2xl">
-                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Features</li>
-                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Anime</li>
+                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100"><a href="#features">Features</a></li>
+                        <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100"><Link href={`/anime`}>Anime</Link></li>
                         <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Manga</li>
                         <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">My List</li>
                     </ul>

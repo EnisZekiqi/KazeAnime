@@ -9,9 +9,9 @@ export async function getAnime() {
     return res.data.data
 }
 
-export async function getManga() {
-    const res = await axios.get('https://api.jikan.moe/v4/manga')
-    return res.data.data
+export async function getAnimePage({ pageParam = 1 }: { pageParam?: number }) {
+    const res = await axios.get(`https://api.jikan.moe/v4/anime?page=${pageParam}`)
+    return res.data
 }
 
 export async function AnimeID(id:number) {
@@ -37,6 +37,12 @@ export async function CharacterID(id:number) {
 
 
 //// Manga APIs
+
+export async function getManga() {
+    const res = await axios.get('https://api.jikan.moe/v4/manga')
+    return res.data.data
+}
+
 
 export async function MangaID(id:number) {
     const res = await axios.get(`https://api.jikan.moe/v4/manga/${id}`)
