@@ -54,3 +54,9 @@ export async function MangaCharacter(id:number) {
     const res = await axios.get(`https://api.jikan.moe/v4/manga/${id}/characters`)
     return res.data.data
 }
+
+
+export async function getMangaPage({pageParam = 1}: {pageParam?: number}) {
+    const res = await axios.get(`https://api.jikan.moe/v4/manga?page=${pageParam}`)
+    return res.data
+}
