@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
     return ( 
         <>
@@ -16,8 +18,8 @@ const Footer = () => {
         {/* Links (optional) */}
         <div className="flex gap-6 text-sm">
           <a href="#" className="hover:text-[#32cd87] transition">Home</a>
-          <a href="#" className="hover:text-[#32cd87] transition">Explore</a>
-          <a href="#" className="hover:text-[#32cd87] transition">Contact</a>
+          <span className="hover:text-[#32cd87] transition"><Link href={`/anime`}>Anime</Link></span>
+          <span className="hover:text-[#32cd87] transition"><Link href={`/manga`}>Manga</Link></span>
         </div>
 
         {/* Attribution */}
