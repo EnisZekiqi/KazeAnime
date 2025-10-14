@@ -6,7 +6,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { getAnimePage, getAnimeSearch } from "../fetch/api/route";
 import debounce from "lodash.debounce"; // npm install lodash.debounce
-
+import useMultiFilter from "../hooks/useMultiFilter";
 type AnimeData = {
   mal_id: number;
   title: string;
@@ -77,22 +77,49 @@ const AnimeList = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (activeData.isLoading) return <div>Loading...</div>;
+  const {setFilters,filteredItems} =useMultiFilter<AnimeData>(allAnime, ['score','genres'])
+  
+  const score = [10,9,8,7,6,5,4,3,2,1]
+  const genres =filteredItems.flatMap(item=>item.genres.map(g=>g.name))
+
+
+  if (activeData.isLoading) return  <div className="h-screen">
+   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="rounded-full w-12 h-12 border-4 border-white border-t-transparent animate-spin" />
+  </div>
+ </div>;
   if (activeData.error) return <div>Error loading data</div>;
 
   return (
     <>
-      <div className="flex items-center justify-between w-full px-6 py-4">
-        <input
+      <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6 mt-6 md:mt-0 md:gap-0 px-6">
+           <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search anime..."
           className="focus:outline-[#32cd87]/70 px-3 py-2 text-white rounded border border-[#a5a5a5] bg-[#1a1a1a] w-full max-w-md"
         />
-      </div>
+        <div className="flex justify-between md:justify-baseline items-center gap-2 w-full md:w-auto">
+          <select name="score"  onChange={(e) => setFilters("score", e.target.value)} className="bg-[#1a1a1a] text-white text-sm sm:text-base px-3 py-2 rounded border border-[#333] focus:outline-[#32cd87]/70">
+            <option value="">Filter by Score</option>
+           { score.map((s, index) => (
+              <option key={index} value={s}>{s}+</option>
+            )) }
 
-      <div className="grid grid-cols-4 gap-6 justify-center items-center">
+            </select>
+            <select name="genres"  onChange={(e) => setFilters("genres", e.target.value)} className="bg-[#1a1a1a]  text-sm sm:text-base text-white px-3 py-2 rounded border border-[#333] focus:outline-[#32cd87]/70">
+            <option value="">Filter by Genre</option>
+            {Array.from(new Set(genres)).sort().map((g, index) => (
+              g && (
+                <option key={index} value={g}>{g}</option>
+              )
+            ))}
+            </select>
+        </div>
+        </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center items-center">
         {allAnime.map((anime: AnimeData) => (
           <Link
             href={`/anime/${anime.mal_id}`}
@@ -133,7 +160,19 @@ const AnimeList = () => {
             {activeData.isFetchingNextPage ? "Loading..." : "Load More"}
           </button>
         )}
+
       </div>
+      {filteredItems.length === 0 && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="rounded-full w-12 h-12 border-4 border-white border-t-transparent animate-spin" />
+  </div>
+)}
+
+      {activeData.isFetching && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="rounded-full w-12 h-12 border-4 border-white border-t-transparent animate-spin" />
+  </div>
+)}
     </>
   );
 };

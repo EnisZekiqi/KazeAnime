@@ -38,8 +38,8 @@ const Navbar = () => {
                         <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28 }} className="md:hidden overflow-hidden mt-4">
                             <ul className="flex flex-col space-y-4 text-white text-2xl font-normal px-6 py-5 rounded-2xl">
                                 <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Features</li>
-                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Anime</li>
-                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">Manga</li>
+                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100"><Link href={`/anime`}>Anime</Link></li>
+                                <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100"><Link href={`/manga`}>Manga</Link></li>
                                 <li className="hover:text-[#32cd87] cursor-pointer transition-all duration-100">My List</li>
                             </ul>
                         </motion.div>
