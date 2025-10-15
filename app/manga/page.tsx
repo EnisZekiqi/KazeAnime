@@ -7,6 +7,8 @@ import { useState,useEffect } from "react";
 import debounce from "lodash.debounce"; // npm install lodash.debounce
 import { getMangaSearch } from "../fetch/api/route";
 import useMultiFilter from "../hooks/useMultiFilter";
+import useFavorites from "../hooks/useFavorites";
+import { BiBookmark,BiBookmarkHeart  } from "react-icons/bi";
 type MangaData = {
     mal_id:number,
     images:{
@@ -19,6 +21,7 @@ type MangaData = {
     genres:{
         name:string
     }[]
+    rank:number
 }
 
 const MangaList = () => {
@@ -89,7 +92,7 @@ const handleScrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-
+const {favorites,addFavorite,removeFavorite,isFavorite}=useFavorites<MangaData>('mangaFavorites')
 const {setFilters,filteredItems} =useMultiFilter<MangaData>(allAnime, ['score','genres'])
 
 const score = [10,9,8,7,6,5,4,3,2,1]
@@ -130,21 +133,57 @@ const genres =filteredItems.flatMap(item=>item.genres.map(g=>g.name))
             </select>
         </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 justify-center items-center">
            {filteredItems.map((manga: MangaData) => (
-      <Link key={manga.mal_id} href={`/manga/${manga.mal_id}`} className=" w-[280px] h-full p-4">
-        <div className="relative flex flex-col items-center justify-center w-[280px] h-full p-4 border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a]  rounded-lg m-2  transition-all duration-200 overflow-hidden">
-                 
-       <div className="absolute top-0 left-0 w-18 h-18 bg-gradient-to-br from-[#54545400] via-[#245f37] to-[#245f37] opacity-70 rounded-br-lg pointer-events-none z-0 blur-lg" />
-       <div className="absolute bottom-0 right-0 w-18 h-18 bg-gradient-to-br from-[#54545400] via-[#245f37] to-[#245f37] opacity-70 rounded-br-lg pointer-events-none z-0 blur-lg" />
-        <img
-          src={manga.images.jpg.image_url}
-          alt={manga.title}
-          className="w-36 h-48 object-cover rounded-md mb-2 relative z-10"
-        />
-         <h2 className="text-white text-[14px] font-medium text-center relative z-10 mt-4">{manga.title}</h2>
-      </div>
-            </Link>
+     <Link
+            href={`/manga/${manga.mal_id}`}
+            key={manga.mal_id}
+            className="w-[280px] h-full p-4"
+          >
+            <div className="relative flex flex-col items-start justify-center w-[415px] h-full p-4 border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] rounded-lg m-2 transition-all duration-200 overflow-hidden">
+             <div className="absolute top-0 left-0 w-18 h-18 bg-gradient-to-br from-[#54545400] via-[#245f37] to-[#245f37] opacity-70 rounded-br-lg pointer-events-none z-0 blur-lg" />
+             <button
+               type="button"
+               aria-label={isFavorite(manga) ? 'Remove favorite' : 'Add favorite'}
+               title={isFavorite(manga) ? 'Remove favorite' : 'Add favorite'}
+               onClick={(e) => {
+                 e.preventDefault();
+                 e.stopPropagation();
+                 // toggle favorite
+                 if (isFavorite(manga)) removeFavorite(manga);
+                 else addFavorite(manga);
+               }}
+               className="absolute cursor-pointer top-0 right-0 w-8 h-8 p-1 text-[#32cd87] hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
+             >
+               {isFavorite(manga) ? <BiBookmarkHeart size={25} />: <BiBookmark size={25} />}
+             </button>
+              <div className="flex items-start gap-4">
+                 <img
+                src={manga.images.jpg.image_url}
+                alt={manga.title}
+                className="w-36 h-48 object-cover rounded-md mb-2 relative z-10"
+              />
+             <div className="flex flex-col items-start gap-4">
+               <h2 className="text-white text-[14px] font-medium text-start relative z-10 mt-4">
+                {manga.title}
+              </h2>
+              <div className="flex flex-col items-start gap-4">
+                <p className="text-white text-sm font-light relative z-10 mt-2">Rank: <em className="text-[#32cd87]">{manga.rank || 'N/A'}</em></p>
+                <p className="text-white text-sm font-light relative z-10 mt-2">Score: <em className="text-[#32cd87]">{manga.score || 'N/A'}</em></p>
+                <div className="flex flex-wrap gap-2">
+                  {manga.genres.map((genre, index) => (
+                    <span key={index} className="text-xs bg-[#245F37] text-white px-2 py-1 rounded-full relative z-10">
+                      {genre.name}
+                    </span>
+                  ))}
+                </div>
+
+              </div>
+             </div>
+              </div>
+              
+            </div>
+          </Link>
         ))}
         </div>
          <div className="w-full flex items-center justify-center">

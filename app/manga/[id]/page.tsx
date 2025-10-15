@@ -1,8 +1,8 @@
 import { MangaID } from "../../fetch/api/route"
 import { MangaCharacter } from "@/app/fetch/api/route";
 import MangaCharacters from "./MangaCharacters";
-
-type Manga = {
+import { BiBookmark,BiBookmarkHeart  } from "react-icons/bi";
+type MangaData = {
     mal_id: number;
     title: string;
     images?: {
@@ -51,9 +51,10 @@ export default async function DetailsManga({params}: {params: {id: number}}) {
     const {id} = params;
 
     const [manga, characters] = await Promise.all([
-        MangaID(id) as Promise<Manga>,
+        MangaID(id) as Promise<MangaData>,
         MangaCharacter(id) as Promise<any>,
     ]);
+
 
     return(
         <>
@@ -67,7 +68,9 @@ export default async function DetailsManga({params}: {params: {id: number}}) {
                             <div className="w-full h-60 bg-[#111] rounded-lg mb-4 md:mb-0 md:mr-6 flex items-center justify-center text-sm text-[#777]">No image</div>
                         )}
                         <div className="text-white">
-                            <h1 className="text-3xl font-bold mb-2">{manga.title}</h1>
+                            <div className="flex items-center justify-between w-full">
+                                <h1 className="text-3xl font-bold mb-2">{manga.title}</h1>
+                            </div>
                             <p className="mb-3"><span className="font-semibold text-[#32cd87]">Chapters:</span> {manga.chapters ?? 'N/A'}</p>
                             <p className="mb-3"><span className="font-semibold text-[#32cd87]">Published:</span> {manga.published?.from ? new Date(manga.published.from as string).toLocaleDateString() : 'N/A'} - {manga.published?.to ? new Date(manga.published.to as string).toLocaleDateString() : 'N/A'}</p>
                             <p className="mb-3"><span className="font-semibold text-[#32cd87]">Rating:</span> {manga?.rating}</p>
