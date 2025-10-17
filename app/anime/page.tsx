@@ -5,9 +5,8 @@ import QueryProvider from '../components/QueryProvider';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { getAnimePage, getAnimeSearch } from '../fetch/api/route';
-import debounce from 'lodash.debounce'; // npm install lodash.debounce
 import useMultiFilter from '../hooks/useMultiFilter';
-import { BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
+import { BiBookmark, BiBookmarkHeart } from "react-icons/bi";
 import { motion } from 'motion/react';
 import useFavorites from '../hooks/useFavorites';
 type AnimeData = {
@@ -30,13 +29,13 @@ const AnimeList = () => {
   const [debouncedSearch, setDebouncedSearch] = useState('');
 
   // ⏳ Debounce effect (waits 500ms after typing)
-  useEffect(() => {
-    const handler = debounce(() => {
-      setDebouncedSearch(searchQuery);
-    }, 500);
 
-    handler();
-    return () => handler.cancel();
+useEffect(() => {
+  const timeout = setTimeout(() => {
+    setDebouncedSearch(searchQuery);
+  }, 1000);
+
+   return () => clearTimeout(timeout);
   }, [searchQuery]);
 
   // 🌊 Default infinite scroll (popular/trending)

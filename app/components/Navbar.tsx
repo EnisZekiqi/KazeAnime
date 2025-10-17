@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
-import { BiMenuAltRight } from 'react-icons/bi';
+import { BiMenuAltRight } from "react-icons/bi";
 import { usePathname } from 'next/navigation';
 
 const Navbar = () => {

@@ -4,7 +4,6 @@ import QueryProvider from '../components/QueryProvider';
 import { getMangaPage } from '../fetch/api/route';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import debounce from 'lodash.debounce'; // npm install lodash.debounce
 import { getMangaSearch } from '../fetch/api/route';
 import useMultiFilter from '../hooks/useMultiFilter';
 import useFavorites from '../hooks/useFavorites';
@@ -30,13 +29,12 @@ const MangaList = () => {
   const [debouncedSearch, setDebouncedSearch] = useState('');
 
   // ⏳ Debounce effect (waits 500ms after typing)
-  useEffect(() => {
-    const handler = debounce(() => {
-      setDebouncedSearch(searchQuery);
-    }, 500);
+ useEffect(() => {
+  const timeout = setTimeout(() => {
+    setDebouncedSearch(searchQuery);
+  }, 1000);
 
-    handler();
-    return () => handler.cancel();
+   return () => clearTimeout(timeout);
   }, [searchQuery]);
 
   // 🌊 Default infinite scroll (popular/trending)

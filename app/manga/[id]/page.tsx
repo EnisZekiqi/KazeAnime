@@ -1,7 +1,6 @@
 import { MangaID } from '../../fetch/api/route';
 import { MangaCharacter } from '@/app/fetch/api/route';
 import MangaCharacters from './MangaCharacters';
-import { BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
 type MangaData = {
   mal_id: number;
   title: string;
