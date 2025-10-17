@@ -53,7 +53,7 @@ export default async function DetailsManga({
 
   const [manga, characters] = await Promise.all([
     MangaID(id) as Promise<MangaData>,
-    MangaCharacter(id) as Promise<any>,
+    MangaCharacter(id) as Promise<Character>,
   ]);
 
   return (

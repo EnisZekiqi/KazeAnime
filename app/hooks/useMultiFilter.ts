@@ -4,7 +4,9 @@ type Filters<T> = {
   [K in keyof T]?: string | number | null;
 };
 
-export default function useMultiFilter<T extends Record<string, any>>(
+export default function useMultiFilter<
+  T extends Record<string, unknown> // safer than "any"
+>(
   items: T[],
   filterKeys: (keyof T)[]
 ) {
@@ -25,7 +27,7 @@ export default function useMultiFilter<T extends Record<string, any>>(
     }));
 
     // debounce turning off the filtering flag so rapid input updates show loader
-    if (debounceTimer.current) clearTimeout(debounceTimer.current as any);
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
     debounceTimer.current = setTimeout(() => {
       setIsFiltering(false);
       debounceTimer.current = null;
@@ -45,11 +47,13 @@ export default function useMultiFilter<T extends Record<string, any>>(
 
         // Handle genres array
         if (Array.isArray(itemValue)) {
-          return itemValue.some((g: any) =>
-            g.name
-              ?.toLowerCase()
-              .includes((filterValue as string).toLowerCase())
-          );
+          return itemValue.some((g) => {
+            if (typeof g === 'object' && g !== null && 'name' in g) {
+              const genre = String((g as { name: string }).name).toLowerCase();
+              return genre.includes(String(filterValue).toLowerCase());
+            }
+            return false;
+          });
         }
 
         // Handle score number comparison
@@ -61,7 +65,7 @@ export default function useMultiFilter<T extends Record<string, any>>(
         if (typeof itemValue === 'string') {
           return itemValue
             .toLowerCase()
-            .includes((filterValue as string).toLowerCase());
+            .includes(String(filterValue).toLowerCase());
         }
 
         return true;
@@ -72,7 +76,7 @@ export default function useMultiFilter<T extends Record<string, any>>(
   // cleanup on unmount
   useEffect(() => {
     return () => {
-      if (debounceTimer.current) clearTimeout(debounceTimer.current as any);
+      if (debounceTimer.current) clearTimeout(debounceTimer.current);
     };
   }, []);
 
