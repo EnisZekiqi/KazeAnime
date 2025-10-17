@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef } from 'react';
 
 type Filters<T> = {
   [K in keyof T]?: string | number | null;
@@ -46,20 +46,22 @@ export default function useMultiFilter<T extends Record<string, any>>(
         // Handle genres array
         if (Array.isArray(itemValue)) {
           return itemValue.some((g: any) =>
-            g.name?.toLowerCase().includes((filterValue as string).toLowerCase())
+            g.name
+              ?.toLowerCase()
+              .includes((filterValue as string).toLowerCase())
           );
         }
 
         // Handle score number comparison
-        if (typeof itemValue === "number") {
+        if (typeof itemValue === 'number') {
           return itemValue >= Number(filterValue);
         }
 
         // Handle string match
-        if (typeof itemValue === "string") {
-          return itemValue.toLowerCase().includes(
-            (filterValue as string).toLowerCase()
-          );
+        if (typeof itemValue === 'string') {
+          return itemValue
+            .toLowerCase()
+            .includes((filterValue as string).toLowerCase());
         }
 
         return true;
@@ -76,4 +78,3 @@ export default function useMultiFilter<T extends Record<string, any>>(
 
   return { setFilters, filteredItems, isFiltering };
 }
-
