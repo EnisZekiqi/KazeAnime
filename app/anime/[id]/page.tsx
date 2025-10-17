@@ -68,6 +68,7 @@ export default async function DetailsAnime({
               <img
                 src={data.images.jpg.large_image_url}
                 alt={data.title}
+                 loading='lazy'
                 className="w-full h-fit rounded-lg mb-4 md:mb-0 md:mr-6"
               />
               <div className="text-white">

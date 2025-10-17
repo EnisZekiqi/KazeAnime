@@ -29,6 +29,7 @@ const TrendingAnime = ({ anime }: AnimeProps) => {
                 <img
                   src={item.images.jpg.image_url}
                   alt={item.title}
+                   loading='lazy'
                   className="w-36 h-48 object-cover rounded-md mb-2 relative z-10"
                 />
                 <h2 className="text-white text-[14px] font-medium text-center relative z-10 mt-4">

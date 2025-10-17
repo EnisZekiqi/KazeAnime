@@ -45,6 +45,7 @@ const AnimeCharacters = ({ character }: CharacterProps) => {
                 <div className="bg-[#1a1a1a] p-4 rounded-lg flex flex-col items-center h-full">
                   <img
                     src={char.character.images.jpg.image_url}
+                     loading='lazy'
                     className="w-full sm:h-22 md:h-40 lg:h-60 object-contain "
                     alt=""
                   />

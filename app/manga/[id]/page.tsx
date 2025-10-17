@@ -66,6 +66,7 @@ export default async function DetailsManga({
                 <img
                   src={manga.images.jpg.image_url}
                   alt={manga.title}
+                  loading='lazy'
                   className="w-full h-fit rounded-lg mb-4 md:mb-0 md:mr-6"
                 />
               ) : (
@@ -113,7 +114,7 @@ export default async function DetailsManga({
                 </p>
                 <div className="mb-3">
                   <span className="font-semibold text-[#32cd87]">Genres:</span>{' '}
-                  {manga.genres?.map((genre: any) => genre.name).join(', ')}
+                {(manga.genres?.map(g => g.name) ?? []).join(', ')}
                 </div>
                 <p className="mt-4 text-[#a5a5a5] text-sm font-light">
                   {manga.synopsis}

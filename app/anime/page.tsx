@@ -185,6 +185,7 @@ useEffect(() => {
                 <img
                   src={anime.images.jpg.image_url}
                   alt={anime.title}
+                   loading='lazy'
                   className="sm:w-36 sm:h-48 w-[270px] h-[200px] object-cover rounded-md mb-2 relative z-10"
                 />
                 <div className="flex flex-col justify-between h-full items-start gap-4 sm:gap-0">
