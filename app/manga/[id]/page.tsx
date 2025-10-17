@@ -49,11 +49,11 @@ export default async function DetailsManga({
 }: {
   params: { id: number };
 }) {
-  const { id } = params;
+  const idNumber = Number(params.id); 
 
   const [manga, characters] = await Promise.all([
-    MangaID(id) as Promise<MangaData>,
-    MangaCharacter(id) as Promise<Character>,
+    MangaID(idNumber) as Promise<MangaData>,
+    MangaCharacter(idNumber) as Promise<Character>,
   ]);
 
   return (

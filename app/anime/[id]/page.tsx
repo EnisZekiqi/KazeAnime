@@ -50,13 +50,13 @@ type Character = {
 export default async function DetailsAnime({
   params,
 }: {
-  params: { id: number };
+  params: { id: string };
 }) {
-  const { id } = params;
+  const idNumber = Number(params.id); 
 
   const [data, character] = await Promise.all([
-    AnimeID(id) as Promise<Anime>,
-    AnimeCharacter(id) as Promise<Character[]>,
+    AnimeID(idNumber) as Promise<Anime>,
+    AnimeCharacter(idNumber) as Promise<Character[]>,
   ]);
 
   return (
