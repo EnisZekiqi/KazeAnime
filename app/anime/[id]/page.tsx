@@ -42,11 +42,9 @@ type Character = {
   about: string;
 };
 
-export default async function DetailsAnime({
-  params,
-}: {
-  params: Record<'id', string>;
-}) {
+export default async function DetailsAnime(props: unknown) {
+  const { params } = props as { params: { id: string } };
+
   const idNumber = Number(params.id);
 
   const [data, character] = await Promise.all([

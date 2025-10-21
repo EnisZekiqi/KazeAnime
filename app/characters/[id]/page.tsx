@@ -1,13 +1,11 @@
 import { CharacterID } from '@/app/fetch/api/route';
-
 export default async function CharacterDetails({
   params,
 }: {
-  params: { id: number };
+  params: { id: string };
 }) {
-  const { id } = params;
-
-  const data = await CharacterID(id);
+  const idNumber = Number(params.id); // co
+  const data = await CharacterID(idNumber);
 
   return (
     <>
