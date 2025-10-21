@@ -42,12 +42,8 @@ type Character = {
   about: string;
 };
 
-
-export default async function DetailsAnime({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function DetailsAnime(props: any) {
+  const { params } = props;
   const idNumber = Number(params.id);
 
   const [data, character] = await Promise.all([
