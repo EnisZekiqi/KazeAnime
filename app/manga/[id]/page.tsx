@@ -43,9 +43,11 @@ type Character = {
   };
   about: string;
 };
-
-export default async function DetailsManga(props: any) {
-  const { params } = props;
+export default async function DetailsManga({
+  params,
+}: {
+  params: Record<'id', string>;
+}) {
   const idNumber = Number(params.id);
 
   const [manga, characters] = await Promise.all([
