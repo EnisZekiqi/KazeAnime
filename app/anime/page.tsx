@@ -4,7 +4,7 @@ import Link from 'next/link';
 import QueryProvider from '../components/QueryProvider';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
-import { getAnimePage, getAnimeSearch } from '../fetch/api/route';
+import { getAnimePage, getAnimeSearch } from '../fetch/api/fetchfunctions';
 import useMultiFilter from '../hooks/useMultiFilter';
 import { BiBookmark, BiBookmarkHeart } from "react-icons/bi";
 import { motion } from 'motion/react';

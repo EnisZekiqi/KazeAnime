@@ -1,4 +1,4 @@
-import { AnimeCharacter, AnimeID } from '@/app/fetch/api/route';
+import { AnimeCharacter, AnimeID } from '@/app/fetch/api/fetchfunctions';
 import AnimeCharacters from './AnimeCharacters';
 
 type Anime = {

@@ -1,10 +1,10 @@
 'use client';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import QueryProvider from '../components/QueryProvider';
-import { getMangaPage } from '../fetch/api/route';
+import { getMangaPage } from '../fetch/api/fetchfunctions';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { getMangaSearch } from '../fetch/api/route';
+import { getMangaSearch } from '../fetch/api/fetchfunctions';
 import useMultiFilter from '../hooks/useMultiFilter';
 import useFavorites from '../hooks/useFavorites';
 import { BiBookmark, BiBookmarkHeart } from 'react-icons/bi';

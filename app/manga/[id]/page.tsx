@@ -1,5 +1,5 @@
-import { MangaID } from '../../fetch/api/route';
-import { MangaCharacter } from '@/app/fetch/api/route';
+import { MangaID } from '../../fetch/api/fetchfunctions';
+import { MangaCharacter } from '@/app/fetch/api/fetchfunctions';
 import MangaCharacters from './MangaCharacters';
 type MangaData = {
   mal_id: number;

@@ -1,9 +1,9 @@
-import { CharacterID } from '@/app/fetch/api/route';
+import { CharacterID } from '@/app/fetch/api/fetchfunctions';
 
 export default async function CharacterDetails(props: unknown) {
   const { params } = props as { params: { id: string } }; // internal safe cast
   const idNumber = Number(params.id);
-  
+
   const data = await CharacterID(idNumber);
 
   return (

@@ -1,6 +1,6 @@
-import { getAnime } from '../fetch/api/route';
+import { getAnime } from '../fetch/api/fetchfunctions';
 import TrendingAnime from './TrendingAnime';
-import { getManga } from '../fetch/api/route';
+import { getManga } from '../fetch/api/fetchfunctions';
 import TrendingManga from './TrendingManga';
 export default async function Trending() {
   const anime = await getAnime();

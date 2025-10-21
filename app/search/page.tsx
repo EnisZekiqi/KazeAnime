@@ -1,4 +1,4 @@
-import { SearchAnime } from '../fetch/api/route';
+import { SearchAnime } from '../fetch/api/fetchfunctions';
 import Link from 'next/link';
 
 type Anime = {
