@@ -11,15 +11,12 @@ type Anime = {
   };
 };
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: { query?: string };
-}) {
-  const query = searchParams.query || '';
+export default async function SearchPage(props: unknown) {
+  const { searchParams } = props as { searchParams: { query?: string } };
+  const query = searchParams.query ?? '';
 
   if (!query) {
-    return <p className="text-white">Please enter a search term.</p>;
+    return <p className="text-white h-screen text-center flex items-center justify-center font-medium text-xl">Please enter a search term.</p>;
   }
 
   const data = (await SearchAnime(query)) as Anime[];
