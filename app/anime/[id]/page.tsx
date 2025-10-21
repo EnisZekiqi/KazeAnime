@@ -10,16 +10,11 @@ type Anime = {
       small_image_url: string;
       large_image_url: string;
     };
-    episodes: number;
-    aired: {
-      from: string;
-      to: string;
-    };
   };
   rating: string;
   score: number;
   rank: number;
-  genres: [name: string, mal_id: number];
+  genres: { name: string; mal_id: number }[];
   synopsis: string;
   episodes: number;
   role: string;
@@ -48,19 +43,18 @@ type Character = {
 };
 
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function DetailsAnime({ params }: PageProps) {
+export default async function DetailsAnime({
+  params,
+}: {
+  params: { id: string };
+}) {
   const idNumber = Number(params.id);
 
-   const [data, character] = await Promise.all([
+  const [data, character] = await Promise.all([
     AnimeID(idNumber) as Promise<Anime>,
     AnimeCharacter(idNumber) as Promise<Character[]>,
   ]);
+
   return (
     <>
       {data && (
