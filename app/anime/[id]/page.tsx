@@ -47,18 +47,20 @@ type Character = {
   about: string;
 };
 
-export default async function DetailsAnime({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const idNumber = Number(params.id); 
 
-  const [data, character] = await Promise.all([
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function DetailsAnime({ params }: PageProps) {
+  const idNumber = Number(params.id);
+
+   const [data, character] = await Promise.all([
     AnimeID(idNumber) as Promise<Anime>,
     AnimeCharacter(idNumber) as Promise<Character[]>,
   ]);
-
   return (
     <>
       {data && (

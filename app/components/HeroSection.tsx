@@ -71,7 +71,7 @@ const HeroSection = () => {
           variants={wordVariants}
           initial="hidden"
           animate="visible"
-          className="text-[32px] md:text-[48px] lg:text-[80px] z-100 text-white font-[500] w-full lg:w-3/4 lg:leading-[105px] text-balance mt-14"
+          className="text-[32px] md:text-[48px] lg:text-[80px] z-100 text-white font-[500] w-full lg:w-3/4 lg:leading-[105px] mt-14"
         >
           Your Gateway to Anime Worlds{' '}
         </motion.div>
