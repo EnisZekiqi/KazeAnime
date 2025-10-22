@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, easeOut } from 'framer-motion';
 
 const FAQ = () => {
   const [showFAQ, setShowFAQ] = useState('');
@@ -49,7 +49,7 @@ const FAQ = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: easeOut },
+      transition: { duration: 0.5 },
     },
   };
 

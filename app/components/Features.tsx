@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import { easeOut, motion } from 'motion/react';
 
 type Anime ={
   mal_id:string
@@ -48,7 +48,7 @@ const Features = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+     transition: { duration: 0.5},
     },
   };
 
