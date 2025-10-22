@@ -180,7 +180,7 @@ const MangaList = () => {
                   if (isFavorite(manga)) removeFavorite(manga);
                   else addFavorite(manga);
                 }}
-                className="absolute cursor-pointer top-1 right-1 w-9 h-9 p-1.5 sm:p-1 text-black rounded-lg sm:text-lime-400 bg-white sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
+                className="absolute cursor-pointer top-1 right-1 w-9 h-9 p-1.5 sm:p-1 text-white rounded-lg sm:text-lime-400 sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
               >
                 {isFavorite(manga) ? (
                   <BiBookmarkHeart size={25} />

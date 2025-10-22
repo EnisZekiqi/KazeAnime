@@ -173,7 +173,7 @@ useEffect(() => {
                   if (isFavorite(anime)) removeFavorite(anime);
                   else addFavorite(anime);
                 }}
-                className="absolute cursor-pointer top-[90%] sm:top-0 right-[2%] sm:right-0 w-9 h-9 p-1.5 sm:p-1 text-black rounded-lg sm:text-lime-400 bg-white sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
+                className="absolute cursor-pointer top-[90%] sm:top-0 right-[2%] sm:right-0 w-9 h-9 p-1.5 sm:p-1 text-white rounded-lg   sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
               >
                 {isFavorite(anime) ? (
                   <BiBookmarkHeart size={25} />

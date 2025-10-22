@@ -18,6 +18,7 @@ type Character = {
     };
   };
   about: string;
+  role:string
 };
 
 type CharacterProps = {

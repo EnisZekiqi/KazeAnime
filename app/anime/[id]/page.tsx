@@ -40,6 +40,7 @@ type Character = {
     };
   };
   about: string;
+  role:string
 };
 
 export default async function DetailsAnime(props: unknown) {
