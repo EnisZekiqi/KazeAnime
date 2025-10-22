@@ -105,7 +105,7 @@ const HeroSection = () => {
             />
             <button
               type="submit"
-              className="px-3.5 py-2 sm:px-4.5 sm:py-3 font-medium cursor-pointer text-sm sm:text-md -ml-12 sm:-ml-0 bg-[#245F37] text-[#fff] rounded-xl  transition"
+              className="px-3.5 py-2 sm:px-4.5 sm:py-3 font-medium cursor-pointer text-sm sm:text-md -ml-16 sm:-ml-0 bg-[#245F37] text-[#fff] rounded-xl  transition"
             >
               {searchClicked ? 'Searching...' : 'Search'}
             </button>

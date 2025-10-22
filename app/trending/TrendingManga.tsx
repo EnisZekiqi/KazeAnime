@@ -32,7 +32,7 @@ const TrendingManga = ({ manga }: MangaProps) => {
                    loading='lazy'
                   className="w-36 h-48 object-cover rounded-md mb-2"
                 />
-                <h2 className="text-white text-[14px] font-medium text-center">
+                <h2 className="text-white text-[14px] font-medium text-center relative z-10 mt-4">
                   {item.title}
                 </h2>
               </div>

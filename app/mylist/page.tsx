@@ -36,8 +36,10 @@ const MyList = () => {
     <>
       <div className="flex flex-col items-start gap-10 min-h-full px-4 py-2.5  md:px-20 md:py-10">
         {storedFav.length === 0 ? (
-          <div className="text-white flex flex-col items-center min-h-screen">
+          <div className="text-white flex flex-col gap-4 items-center h-[70vh] w-full justify-center">
             <svg
+            width="50px"
+            height="50px"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

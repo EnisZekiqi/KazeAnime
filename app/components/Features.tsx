@@ -103,7 +103,7 @@ const Features = () => {
                     {feature.title}
                   </h2>
                 </div>
-                <p className="text-[#a5a5a5] leading-relaxed">{feature.desc}</p>
+                <p className="text-[#a5a5a5] leading-relaxed text-[14px] sm:text-lg">{feature.desc}</p>
               </div>
             ))}
           </div>
