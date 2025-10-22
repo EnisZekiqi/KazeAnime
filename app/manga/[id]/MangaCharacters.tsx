@@ -6,6 +6,7 @@ type Character = {
   character: {
     name: string;
     role: string;
+    mal_id: number;
     images: {
       jpg: {
         image_url: string;
@@ -16,6 +17,7 @@ type Character = {
     };
   };
   about: string;
+  role:string
 };
 
 type CharacterProps = {
