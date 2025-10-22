@@ -3,9 +3,16 @@ import axios from 'axios';
 /// Anime APIs
 
 export async function getAnime() {
-  const res = await axios.get('https://api.jikan.moe/v4/anime');
+  const res = await fetch("https://api.jikan.moe/v4/top/anime", {
+    next: { revalidate: 3600 }, // Revalidate once per hour
+  });
 
-  return res.data.data;
+  if (!res.ok) {
+    throw new Error(`Failed to fetch anime: ${res.status}`);
+  }
+
+  const data = await res.json();
+  return data.data;
 }
 
 export async function getAnimePage({ pageParam = 1 }: { pageParam?: number }) {
@@ -58,8 +65,16 @@ export async function CharacterID(id: number) {
 //// Manga APIs
 
 export async function getManga() {
-  const res = await axios.get('https://api.jikan.moe/v4/manga');
-  return res.data.data;
+  const res = await fetch("https://api.jikan.moe/v4/top/manga", {
+    next: { revalidate: 3600 }, // Revalidate once per hour
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch anime: ${res.status}`);
+  }
+
+  const data = await res.json();
+  return data.data;
 }
 
 export async function MangaID(id: number) {
