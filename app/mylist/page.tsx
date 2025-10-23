@@ -111,7 +111,49 @@ const MyList = () => {
                 Saved Anime
               </h1>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center justify-around gap-10 w-full">
-                {savedAnime.map((anime: Favorites) => (
+                {savedAnime.length === 0 ? <div className='flex text-white gap-4 flex-col items-center justify-center h-[400px]'>
+                   <svg
+            width="50px"
+            height="50px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                {' '}
+                <g clip-path="url(#clip0_429_11038)">
+                  {' '}
+                  <path
+                    d="M8.65704 3H16C17.1046 3 18 3.89543 18 5V12.343M6 5.99981V21L12 18L18 21V17.9998"
+                    stroke="#32cd87"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{' '}
+                  <path
+                    d="M4.00012 4L20.0001 20"
+                    stroke="#32cd87"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  ></path>{' '}
+                </g>{' '}
+                <defs>
+                  {' '}
+                  <clipPath id="clip0_429_11038">
+                    {' '}
+                    <rect width="24" height="24" fill="white"></rect>{' '}
+                  </clipPath>{' '}
+                </defs>{' '}
+              </g>
+            </svg>
+            <p>No Anime's added yet</p>
+                </div> :savedAnime.map((anime: Favorites) => (
                   <Link key={anime.mal_id} href={`/anime/${anime.mal_id}`}>
                     <div className="relative flex flex-col items-center justify-center border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] w-[280px] h-full p-4 rounded-lg m-2  transition-all duration-200 overflow-hidden">
                       <div className="absolute top-0 left-0 w-18 h-18 bg-gradient-to-br from-[#54545400] via-[#245f37] to-[#245f37] opacity-70 rounded-br-lg pointer-events-none z-0 blur-lg" />
@@ -136,7 +178,49 @@ const MyList = () => {
                 Saved Manga
               </h1>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center justify-around gap-10 w-full">
-                {savedManga.map((anime: Favorites) => (
+                {savedManga.length === 0 ? <div className='flex text-white gap-4 flex-col items-center justify-center h-[400px]'>
+                   <svg
+            width="50px"
+            height="50px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                {' '}
+                <g clip-path="url(#clip0_429_11038)">
+                  {' '}
+                  <path
+                    d="M8.65704 3H16C17.1046 3 18 3.89543 18 5V12.343M6 5.99981V21L12 18L18 21V17.9998"
+                    stroke="#32cd87"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{' '}
+                  <path
+                    d="M4.00012 4L20.0001 20"
+                    stroke="#32cd87"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  ></path>{' '}
+                </g>{' '}
+                <defs>
+                  {' '}
+                  <clipPath id="clip0_429_11038">
+                    {' '}
+                    <rect width="24" height="24" fill="white"></rect>{' '}
+                  </clipPath>{' '}
+                </defs>{' '}
+              </g>
+            </svg>
+            <p>No Manga's added yet</p>
+                </div> :savedManga.map((anime: Favorites) => (
                   <Link key={anime.mal_id} href={`/anime/${anime.mal_id}`}>
                     <div className="relative flex flex-col items-center justify-center border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] w-[280px] h-full p-4 rounded-lg m-2  transition-all duration-200 overflow-hidden">
                       <div className="absolute top-0 left-0 w-18 h-18 bg-gradient-to-br from-[#54545400] via-[#245f37] to-[#245f37] opacity-70 rounded-br-lg pointer-events-none z-0 blur-lg" />

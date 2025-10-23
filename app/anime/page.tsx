@@ -151,7 +151,7 @@ useEffect(() => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 justify-center items-center">
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 justify-center sm:justify-start items-center w-full">
         {filteredItems.map((anime: AnimeData) => (
           <Link
             href={`/anime/${anime.mal_id}`}
@@ -173,7 +173,7 @@ useEffect(() => {
                   if (isFavorite(anime)) removeFavorite(anime);
                   else addFavorite(anime);
                 }}
-                className="absolute cursor-pointer top-[90%] sm:top-0 right-[2%] sm:right-0 w-9 h-9 p-1.5 sm:p-1 text-white rounded-lg   sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
+                className="absolute cursor-pointer top-1 right-1 w-9 h-9 p-1.5 sm:p-1 w-9 h-9 p-1.5 sm:p-1 text-white rounded-lg   sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
               >
                 {isFavorite(anime) ? (
                   <BiBookmarkHeart size={25} />
@@ -186,7 +186,7 @@ useEffect(() => {
                   src={anime.images.jpg.image_url}
                   alt={anime.title}
                    loading='lazy'
-                  className="sm:w-36 sm:h-48 w-[270px] h-[200px] object-cover rounded-md mb-2 relative z-10"
+                  className="sm:w-36 sm:h-48 w-[280px] h-[200px]  sm:object-cover object-contain rounded-md mb-2 relative z-10"
                 />
                 <div className="flex flex-col justify-between h-full items-start gap-4 sm:gap-0">
                   <div className="">

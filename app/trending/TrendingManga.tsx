@@ -18,9 +18,9 @@ type MangaProps = {
 const TrendingManga = ({ manga }: MangaProps) => {
   return (
     <>
-      <div className="flex flex-col items-start gap-4">
-        <h1 className="text-2xl font-semibold text-white">Trending Manga</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center justify-around gap-10">
+      <div className="flex flex-col items-center sm:items-start gap-4 w-full">
+        <h1 className="text-2xl font-semibold text-white text-start w-full">Trending Manga</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center justify-items-center justify-around gap-10">
           {manga.slice(0, 5).map((item: Manga) => (
             <Link key={item.mal_id} href={`/manga/${item.mal_id}`}>
               <div className="relative flex flex-col items-center justify-center border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] w-[280px] h-full p-4 rounded-lg m-2  transition-all duration-200 overflow-hidden">

@@ -22,12 +22,12 @@ export default async function SearchPage(props: unknown) {
   const data = (await SearchAnime(query)) as Anime[];
 
   return (
-    <div className="flex flex-col items-start justify-center min-h-[150vh] p-4">
-      <h1 className="text-white text-2xl font-medium mb-4">
+    <div className="flex flex-col items-center sm:items-start justify-center min-h-[150vh] p-4">
+      <h1 className="text-white text-xl sm:text-2xl font-medium mb-4 w-full text-start">
         Search Results for{' '}
         <b className="text-[#28a76f] font-semibold">{query}</b>
       </h1>
-      <div className="flex flex-wrap justify-start items-center gap-4">
+      <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4">
         {data.length > 0 ? (
           data.map((anime) => (
             <Link key={anime.mal_id} href={`/anime/${anime.mal_id}`}>
@@ -42,7 +42,7 @@ export default async function SearchPage(props: unknown) {
                   alt={anime.title}
                   className="w-full h-64 object-contain rounded-md mb-2 relative z-10"
                 />
-                <h2 className="text-white text-md font-medium text-center relative z-10">
+                <h2 className="text-white text-md font-medium text-center relative z-10 mt-4">
                   {anime.title}
                 </h2>
               </div>

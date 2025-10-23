@@ -158,7 +158,7 @@ const MangaList = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 justify-center items-center">
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 justify-items-center justify-center items-center">
         {filteredItems.map((manga: MangaData) => (
           <Link
             href={`/manga/${manga.mal_id}`}
