@@ -152,7 +152,7 @@ const MyList = () => {
                 </defs>{' '}
               </g>
             </svg>
-            <p>No Anime's added yet</p>
+            <p>No Animes added yet</p>
                 </div> :savedAnime.map((anime: Favorites) => (
                   <Link key={anime.mal_id} href={`/anime/${anime.mal_id}`}>
                     <div className="relative flex flex-col items-center justify-center border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] w-[280px] h-full p-4 rounded-lg m-2  transition-all duration-200 overflow-hidden">
@@ -219,7 +219,7 @@ const MyList = () => {
                 </defs>{' '}
               </g>
             </svg>
-            <p>No Manga's added yet</p>
+            <p>No Mangas added yet</p>
                 </div> :savedManga.map((anime: Favorites) => (
                   <Link key={anime.mal_id} href={`/anime/${anime.mal_id}`}>
                     <div className="relative flex flex-col items-center justify-center border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] w-[280px] h-full p-4 rounded-lg m-2  transition-all duration-200 overflow-hidden">
