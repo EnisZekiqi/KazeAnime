@@ -9,6 +9,7 @@ import useMultiFilter from '../hooks/useMultiFilter';
 import { BiBookmark, BiBookmarkHeart } from "react-icons/bi";
 import { motion } from 'motion/react';
 import useFavorites from '../hooks/useFavorites';
+import Toast from '../components/Toast';
 type AnimeData = {
   mal_id: number;
   title: string;
@@ -94,6 +95,8 @@ useEffect(() => {
   const { favorites, addFavorite, removeFavorite, isFavorite } =
     useFavorites<AnimeData>();
 
+    const [toast,setToast]=useState({show:false,message:''})
+
   if (activeData.isLoading)
     return (
       <div className="h-screen">
@@ -166,13 +169,21 @@ useEffect(() => {
                   isFavorite(anime) ? 'Remove favorite' : 'Add favorite'
                 }
                 title={isFavorite(anime) ? 'Remove favorite' : 'Add favorite'}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  // toggle favorite
-                  if (isFavorite(anime)) removeFavorite(anime);
-                  else addFavorite(anime);
-                }}
+               onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                let message = '';
+                if (isFavorite(anime)) {
+                  removeFavorite(anime);
+                  message = `Removed ${anime.title} from favorites`;
+                } else {
+                  addFavorite(anime);
+                  message = `Successfully saved ${anime.title} to favorites`;
+                }
+
+                setToast({ show: true, message });
+              }}
                 className="absolute cursor-pointer top-1 right-1 w-9 h-9 p-1.5 sm:p-1 w-9 h-9 p-1.5 sm:p-1 text-white rounded-lg   sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
               >
                 {isFavorite(anime) ? (
@@ -253,6 +264,10 @@ useEffect(() => {
           <div className="rounded-full w-12 h-12 border-4 border-white border-t-transparent animate-spin" />
         </div>
       )}
+      <Toast show={toast.show}
+      message={toast.message}
+      onClose={()=>setToast({show:false,message:''})}
+      />
     </>
   );
 };

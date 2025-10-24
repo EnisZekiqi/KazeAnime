@@ -36,7 +36,7 @@ const Navbar = () => {
             </span>
           </div>
 
-          <ul className="hidden md:flex space-x-6 text-white bg-[#0E0E0E] border border-[#1E1E1E] px-6 py-5 rounded-2xl">
+          <ul className="hidden md:flex space-x-6 text-white bg-[#0E0E0E] border border-b border-[#1E1E1E] px-6 py-5 rounded-2xl">
             <li
               className={`hover:text-[#32cd87] cursor-pointer transition-all duration-100`}
               onClick={() => setIsMenuOpen(false)}

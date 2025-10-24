@@ -9,6 +9,7 @@ import useMultiFilter from '../hooks/useMultiFilter';
 import useFavorites from '../hooks/useFavorites';
 import { BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
 import { motion } from 'motion/react';
+import Toast from '../components/Toast';
 type MangaData = {
   mal_id: number;
   images: {
@@ -102,6 +103,8 @@ const MangaList = () => {
     item.genres.map((g) => g.name)
   );
 
+  const [toast,setToast]=useState({show:false,message:''})
+
   if (activeData.isLoading)
     return (
       <div className="h-screen">
@@ -158,7 +161,7 @@ const MangaList = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 justify-items-center justify-center items-center">
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-items-center gap-6 justify-center sm:justify-start items-center w-screen">
         {filteredItems.map((manga: MangaData) => (
           <Link
             href={`/manga/${manga.mal_id}`}
@@ -173,12 +176,20 @@ const MangaList = () => {
                   isFavorite(manga) ? 'Remove favorite' : 'Add favorite'
                 }
                 title={isFavorite(manga) ? 'Remove favorite' : 'Add favorite'}
-                onClick={(e) => {
+               onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  // toggle favorite
-                  if (isFavorite(manga)) removeFavorite(manga);
-                  else addFavorite(manga);
+
+                  let message = '';
+                  if (isFavorite(manga)) {
+                    removeFavorite(manga);
+                    message = `Removed ${manga.title} from favorites`;
+                  } else {
+                    addFavorite(manga);
+                    message = `Successfully saved ${manga.title} to favorites`;
+                  }
+
+                  setToast({ show: true, message });
                 }}
                 className="absolute cursor-pointer top-1 right-1 w-9 h-9 p-1.5 sm:p-1 text-white rounded-lg  sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
               >
@@ -261,6 +272,10 @@ const MangaList = () => {
           <div className="rounded-full w-12 h-12 border-4 border-white border-t-transparent animate-spin" />
         </div>
       )}
+      <Toast show={toast.show}
+      message={toast.message}
+      onClose={()=>setToast({show:false,message:''})}
+      />
     </>
   );
 };

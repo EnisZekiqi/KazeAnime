@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#🍃KazeAnime
 
-## Getting Started
+**KazeAnime** is a sleek anime & manga discovery web app built with Next.js 14, designed to help you explore, search, and organize your favorite series — all with smooth UI and local storage persistence.You can browse **Anime**, **Manga**, and even the ability to **save favorites** for later viewing using local storage.
 
-First, run the development server:
+##Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Search & Filter** — Find anime/manga by name, genre, or score dynamically
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Infinite Scroll** — Pagination — Powered by TanStack Query for smooth data fetching
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Favorites System** — Add or remove titles with instant visual feedback (stored in localStorage)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Detailed Pages** — Explore rich data for anime, manga, and characters
 
-## Learn More
+**Decorative UI** — Animated visuals that adapt responsively across devices
 
-To learn more about Next.js, take a look at the following resources:
+**Responsive Design** — Fully mobile-ready layout with TailwindCSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Optimized Performance** — Uses SSR, ISR, and CSR where appropriate
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+##Tech Stack

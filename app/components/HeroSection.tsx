@@ -90,7 +90,7 @@ const HeroSection = () => {
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.4 }}
-          className="border focus:focus-within:border-[#28a76f] border-[#343434]/70 bg-[#0E0E0E] rounded-2xl z-100 p-0.5 sm:p-1 w-full max-w-[300px] sm:max-w-[450px] "
+          className="border focus:focus-within:border-[#28a76f] border-[#343434]/70 bg-[#0E0E0E] rounded-2xl z-100 p-0.5 sm:p-1 w-full sm:w-[450px] overflow-hidden"
         >
           <form
             onSubmit={handleSearch}
