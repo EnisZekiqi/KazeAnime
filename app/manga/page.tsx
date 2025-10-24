@@ -157,16 +157,17 @@ const MangaList = () => {
           </select>
         </div>
       </div>
-      <motion.div
+      <div className="flex flex-col items-center sm:items-start w-full" >
+        <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-items-center gap-6 justify-center sm:justify-start items-center w-screen">
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 justify-center sm:justify-start items-center w-fit sm:w-full">
         {filteredItems.map((manga: MangaData) => (
           <Link
             href={`/manga/${manga.mal_id}`}
             key={manga.mal_id}
-            className="w-[280px] h-full p-4"
+            className="pt-4 pl-0 sm:pl-4"
           >
             <div className="relative flex flex-col items-center sm:items-start justify-center w-[300px] sm:w-[425px] h-full p-4 border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] rounded-lg m-2 transition-all duration-200 overflow-hidden">
               <div className="absolute top-0 left-0 w-18 h-18 bg-gradient-to-br from-[#54545400] via-[#245f37] to-[#245f37] opacity-70 rounded-br-lg pointer-events-none z-0 blur-lg" />
@@ -237,6 +238,7 @@ const MangaList = () => {
           </Link>
         ))}
       </motion.div>
+      </div>
       <div className="w-full flex items-center justify-center">
         {/* Floating scroll-to-top button */}
         {scrollTop && (

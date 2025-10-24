@@ -1,4 +1,4 @@
-#🍃KazeAnime
+#🍃 KazeAnime
 
 **KazeAnime** is a sleek anime & manga discovery web app built with Next.js 14, designed to help you explore, search, and organize your favorite series — all with smooth UI and local storage persistence.You can browse **Anime**, **Manga**, and even the ability to **save favorites** for later viewing using local storage.
 
@@ -19,3 +19,14 @@
 **Optimized Performance** — Uses SSR, ISR, and CSR where appropriate
 
 ##Tech Stack
+
+**Framework** — Next.js (SSR, ISR, CSR mix).
+
+
+**Data fetching** — TanStack Query (caching, infinite scroll, pagination).
+
+
+**Styling** — TailwindCSS (fast & modern) or your favorite UI library.
+
+
+**State** — Mostly TanStack Query + local custom hooks (for favorites, filters, etc.).
