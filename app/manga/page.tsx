@@ -157,86 +157,89 @@ const MangaList = () => {
           </select>
         </div>
       </div>
-      <div className="flex flex-col items-center sm:items-start w-full" >
+      <div className="flex flex-col items-center sm:items-start w-full pl-6" >
         <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 justify-center sm:justify-start items-center w-fit sm:w-full">
-        {filteredItems.map((manga: MangaData) => (
-          <Link
-            href={`/manga/${manga.mal_id}`}
-            key={manga.mal_id}
-            className="pt-4 pl-0 sm:pl-4"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 mt-6 gap-6 justify-center sm:justify-start items-center w-fit sm:w-full">
+      {filteredItems.map((manga: MangaData) => (
+  <Link
+    href={`/manga/${manga.mal_id}`}
+    key={manga.mal_id}
+    className="block w-[300px] sm:w-[350px] md:w-[400px] group transition-all duration-300 "
+  >
+    <div className="relative rounded-2xl overflow-hidden bg-[#1a1a1a] border border-[#333] hover:border-[#28a76f] transition-all duration-200 shadow-md">
+      {/* --- IMAGE --- */}
+      <div className="relative h-64 sm:h-72 overflow-hidden">
+        <img
+          src={manga.images.jpg.image_url}
+          alt={manga.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-300 "
+        />
+
+        {/* --- GRADIENT OVERLAY --- */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+
+        {/* --- BOOKMARK BUTTON --- */}
+        <button
+          type="button"
+          aria-label={isFavorite(manga) ? 'Remove favorite' : 'Add favorite'}
+          title={isFavorite(manga) ? 'Remove favorite' : 'Add favorite'}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            let message = '';
+            if (isFavorite(manga)) {
+              removeFavorite(manga);
+              message = `Removed ${manga.title} from favorites`;
+            } else {
+              addFavorite(manga);
+              message = `Successfully saved ${manga.title} to favorites`;
+            }
+
+            setToast({ show: true, message });
+          }}
+          className="absolute top-3 right-3 p-2 rounded-full bg-black/50 hover:bg-black/60 text-white transition"
+        >
+          {isFavorite(manga) ? (
+            <BiBookmarkHeart size={22} />
+          ) : (
+            <BiBookmark size={22} />
+          )}
+        </button>
+
+        {/* --- TEXT OVERLAY (TITLE, SCORE, RANK) --- */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+          <h2 className="text-base sm:text-lg font-semibold truncate">{manga.title}</h2>
+          <div className="flex items-center justify-between text-sm font-light mt-1">
+            <p>
+              Rank: <em className="text-[#32cd87]">{manga.rank || 'N/A'}</em>
+            </p>
+            <p>
+              Score: <em className="text-[#32cd87]">{manga.score || 'N/A'}</em>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* --- GENRES --- */}
+      <div className="flex flex-wrap gap-2 p-4 bg-[#1a1a1a]">
+        {manga.genres.map((genre, index) => (
+          <span
+            key={index}
+            className="text-xs bg-[#245F37] text-white px-2 py-1 rounded-full"
           >
-            <div className="relative flex flex-col items-center sm:items-start justify-center w-[300px] sm:w-[425px] h-full p-4 border border-[#333] hover:border-[#28a76f] bg-[#1a1a1a] rounded-lg m-2 transition-all duration-200 overflow-hidden">
-              <div className="absolute top-0 left-0 w-18 h-18 bg-gradient-to-br from-[#54545400] via-[#245f37] to-[#245f37] opacity-70 rounded-br-lg pointer-events-none z-0 blur-lg" />
-              <button
-                type="button"
-                aria-label={
-                  isFavorite(manga) ? 'Remove favorite' : 'Add favorite'
-                }
-                title={isFavorite(manga) ? 'Remove favorite' : 'Add favorite'}
-               onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-
-                  let message = '';
-                  if (isFavorite(manga)) {
-                    removeFavorite(manga);
-                    message = `Removed ${manga.title} from favorites`;
-                  } else {
-                    addFavorite(manga);
-                    message = `Successfully saved ${manga.title} to favorites`;
-                  }
-
-                  setToast({ show: true, message });
-                }}
-                className="absolute cursor-pointer top-1 right-1 w-9 h-9 p-1.5 sm:p-1 text-white rounded-lg  sm:bg-transparent hover:text-[#32cd87]/70 opacity-100 rounded-br-lg"
-              >
-                {isFavorite(manga) ? (
-                  <BiBookmarkHeart size={25} />
-                ) : (
-                  <BiBookmark size={25} />
-                )}
-              </button>
-              <div className="flex flex-col sm:flex-row items-stretch gap-2 sm:gap-4">
-                <img
-                  src={manga.images.jpg.image_url}
-                  alt={manga.title}
-                  className="sm:w-36 sm:h-48 w-[280px] h-[200px]  sm:object-cover object-contain rounded-md mb-2 relative z-10"
-                />
-                <div className="flex flex-col justify-around h-full items-start gap-4 sm:gap-0">
-                  <div className="">
-                    <h2 className="text-white text-[16px] sm:text-[16px] font-medium text-start relative z-10">
-                      {manga.title}
-                    </h2>
-                    <p className="text-white text-sm font-light relative z-10 mt-2">
-                      Rank:{' '}
-                      <em className="text-[#32cd87]">{manga.rank || 'N/A'}</em>
-                    </p>
-                    <p className="text-white text-sm font-light relative z-10 mt-2">
-                      Score:{' '}
-                      <em className="text-[#32cd87]">{manga.score || 'N/A'}</em>
-                    </p>
-                  </div>
-
-                  {/* genres pinned to bottom */}
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {manga.genres.map((genre, index) => (
-                      <span
-                        key={index}
-                        className="text-xs bg-[#245F37] text-white px-2 py-1 rounded-full relative z-10"
-                      >
-                        {genre.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
+            {genre.name}
+          </span>
         ))}
+      </div>
+    </div>
+  </Link>
+))}
+
       </motion.div>
       </div>
       <div className="w-full flex items-center justify-center">
