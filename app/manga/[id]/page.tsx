@@ -49,10 +49,20 @@ export default async function DetailsManga(props: unknown) {
 
   const idNumber = Number(params.id);
 
-  const [manga, characters] = await Promise.all([
-    MangaID(idNumber) as Promise<MangaData>,
-    MangaCharacter(idNumber) as Promise<Character[]>,
-  ]);
+   const [dataRes, charRes] = await Promise.all([
+        MangaID(idNumber).catch(() => null),
+        MangaCharacter(idNumber).catch(() => []),
+      ]);
+
+    const data = dataRes;
+    const character = charRes;
+    
+    if (!data) {
+      return <div className="text-white p-6">Manga not found.</div>;
+    }
+
+    const manga = data as MangaData;
+    const characters = character as Character[];
 
   return (
     <>
@@ -62,8 +72,8 @@ export default async function DetailsManga(props: unknown) {
             <div className="flex flex-col md:flex-row items-center md:items-start">
               {manga?.images?.jpg?.image_url ? (
                 <img
-                  src={manga.images.jpg.image_url}
-                  alt={manga.title}
+                  src={manga?.images?.jpg?.large_image_url ?? "/placeholder.jpg"}
+                   alt={manga?.title ?? "Unknown anime"}
                   loading='lazy'
                   className="w-full h-fit rounded-lg mb-4 md:mb-0 md:mr-6"
                 />

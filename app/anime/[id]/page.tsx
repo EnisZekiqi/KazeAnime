@@ -48,10 +48,18 @@ export default async function DetailsAnime(props: unknown) {
 
   const idNumber = Number(params.id);
 
-  const [data, character] = await Promise.all([
-    AnimeID(idNumber) as Promise<Anime>,
-    AnimeCharacter(idNumber) as Promise<Character[]>,
-  ]);
+    const [dataRes, charRes] = await Promise.all([
+      AnimeID(idNumber).catch(() => null),
+      AnimeCharacter(idNumber).catch(() => []),
+    ]);
+
+    if (!dataRes) {
+      return <div className="text-white p-6">Anime not found.</div>;
+    }
+
+    const data = dataRes;
+    const character = charRes;
+
 
   return (
     <>
@@ -59,9 +67,9 @@ export default async function DetailsAnime(props: unknown) {
         <div className="flex flex-col items-start justify-center min-h-full p-2 sm:p-4">
           <div className=" p-6 flex flex-col items-start gap-4 rounded-lg shadow-lg max-w-7xl w-full">
             <div className="flex flex-col md:flex-row items-center md:items-start">
-              <img
-                src={data.images.jpg.large_image_url}
-                alt={data.title}
+             <img
+              src={data?.images?.jpg?.large_image_url ?? "/placeholder.jpg"}
+              alt={data?.title ?? "Unknown anime"}
                  loading='lazy'
                 className="w-full h-fit rounded-lg mb-4 md:mb-0 md:mr-6"
               />
@@ -77,9 +85,9 @@ export default async function DetailsAnime(props: unknown) {
                 </p>
                 <p className="mb-3">
                   <span className="font-semibold text-[#32cd87]">Aired:</span>{' '}
-                  {data.aired.from
-                    ? new Date(data.aired.from).toLocaleDateString()
-                    : 'N/A'}{' '}
+                  {data?.aired?.from
+                  ? new Date(data.aired.from).toLocaleDateString()
+                  : "N/A"}
                   -{' '}
                   {data.aired.to
                     ? new Date(data.aired.to).toLocaleDateString()
@@ -87,19 +95,19 @@ export default async function DetailsAnime(props: unknown) {
                 </p>
                 <p className="mb-3">
                   <span className="font-semibold text-[#32cd87]">Rating:</span>{' '}
-                  {data.rating}
+                 {data?.rating ?? "N/A"}
                 </p>
                 <p className="mb-3">
                   <span className="font-semibold text-[#32cd87]">Score:</span>{' '}
-                  {data.score}
+                  {data?.score ?? "N/A"}
                 </p>
                 <p className="mb-3">
                   <span className="font-semibold text-[#32cd87]">Rank:</span>{' '}
-                  {data.rank}
+                  {data?.rank ?? "N/A"}
                 </p>
                 <div className="mb-3">
                   <span className="font-semibold text-[#32cd87]">Genres:</span>{' '}
-                  {data.genres.map((genre) => genre.name).join(', ')}
+                    {data?.genres?.map((g: { name: string; mal_id: number }) => g.name).join(", ") ?? "N/A"}
                 </div>
                 <p className="mt-4 text-[#a5a5a5] text-sm font-light">
                   {data.synopsis}
