@@ -10,6 +10,8 @@ import useFavorites from '../hooks/useFavorites';
 import { BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
 import { motion } from 'motion/react';
 import Toast from '../components/Toast';
+import { useTransition } from 'react';
+import { useRouter } from 'next/navigation';
 type MangaData = {
   mal_id: number;
   images: {
@@ -105,6 +107,27 @@ const MangaList = () => {
 
   const [toast,setToast]=useState({show:false,message:''})
 
+
+  const [isPending,startTransition]=useTransition();  
+
+  const router = useRouter();
+
+  const handleClick =(id:number)=>{
+    startTransition(()=>{
+     router.push(`/anime/${id}`);
+    })
+  }
+
+if (isPending) {
+  return(
+    <div className="h-screen">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+        <div className="rounded-full w-12 h-12 border-4 border-white border-t-transparent animate-spin" />
+      </div>
+    </div>
+  )
+}
+
   if (activeData.isLoading)
     return (
       <div className="h-screen">
@@ -157,15 +180,15 @@ const MangaList = () => {
           </select>
         </div>
       </div>
-      <div className="flex flex-col items-center sm:items-start w-full pl-6" >
+      <div className="flex flex-col items-center sm:items-start w-full pl-0 sm:pl-6" >
         <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 mt-6 gap-6 justify-center sm:justify-start items-center w-fit sm:w-full">
       {filteredItems.map((manga: MangaData) => (
-  <Link
-    href={`/manga/${manga.mal_id}`}
+  <div
+    onClick={()=>handleClick(manga.mal_id)}
     key={manga.mal_id}
     className="block w-[300px] sm:w-[350px] md:w-[400px] group transition-all duration-300 "
   >
@@ -237,7 +260,7 @@ const MangaList = () => {
         ))}
       </div>
     </div>
-  </Link>
+  </div>
 ))}
 
       </motion.div>
