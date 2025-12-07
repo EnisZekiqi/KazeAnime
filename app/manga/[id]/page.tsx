@@ -45,24 +45,38 @@ type Character = {
   role:string
 };
 export default async function DetailsManga(props: unknown) {
-  const { params } = props as { params: { id: string } };
+  const { params } = props as { params: Promise<{ id: string }> };
+  const { id } = await params;
 
-  const idNumber = Number(params.id);
+  const idNumber = Number(id);
+  let manga: MangaData | null = null;
+  let characters: Character[] = [];
 
-   const [dataRes, charRes] = await Promise.all([
-        MangaID(idNumber).catch(() => null),
-        MangaCharacter(idNumber).catch(() => []),
-      ]);
-
+  try {
+    const [dataRes, charRes] = await Promise.all([
+      MangaID(idNumber).catch((err) => {
+        console.error('MangaID fetch error:', err);
+        return null;
+      }),
+      MangaCharacter(idNumber).catch((err) => {
+        console.error('MangaCharacter fetch error:', err);
+        return [];
+      }),
+    ]);
     const data = dataRes;
     const character = charRes;
-    
+
     if (!data) {
       return <div className="text-white p-6">Manga not found.</div>;
     }
 
-    const manga = data as MangaData;
-    const characters = character as Character[];
+    manga = data as MangaData;
+    characters = character as Character[];
+  
+  } catch (err) {
+    console.error('DetailsManga error:', err);
+    return <div className="text-white p-6">Error loading manga.</div>;
+  }
 
   return (
     <>
@@ -96,7 +110,7 @@ export default async function DetailsManga(props: unknown) {
                   <span className="font-semibold text-[#32cd87]">
                     Published:
                   </span>{' '}
-                  {manga.published?.from
+                  {manga?.published?.from
                     ? new Date(
                         manga.published.from as string
                       ).toLocaleDateString()

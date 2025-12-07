@@ -39,8 +39,13 @@ export async function getAnimeSearch({
 }
 
 export async function AnimeID(id: number) {
-  const res = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
-  return res.data.data;
+  try {
+    const res = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+    return res.data.data;
+  } catch (error) {
+    console.error(`Error fetching anime with ID ${id}:`, error);
+    throw error;
+  }
 }
 
 export async function AnimeCharacter(id: number) {
