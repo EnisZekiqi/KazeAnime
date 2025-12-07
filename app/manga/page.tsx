@@ -114,7 +114,7 @@ const MangaList = () => {
 
   const handleClick =(id:number)=>{
     startTransition(()=>{
-     router.push(`/anime/${id}`);
+     router.push(`/manga/${id}`);
     })
   }
 
